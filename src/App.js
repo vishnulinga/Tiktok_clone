@@ -2,11 +2,15 @@ import React,{useState,useEffect} from 'react';
 import Video from "./video"
 import db from "./firebase"
 import './App.css';
-import Login from "./login"
+
 import Appbar from "./Appbar"
+import Blank from "./Blank"
 
 function App() {
-const [videos,setVideos]=useState([]);
+  
+  const [videos,setVideos]=useState([]);
+const [authenticate,setAuthenticate]=useState(true)
+const [login,setLogin]=useState(true)
 
 useEffect(() => {
   db.collection("videos").onSnapshot((snapshot) =>
@@ -17,17 +21,17 @@ useEffect(() => {
   return (
     <div>
 
-    <Appbar/>
+    {login?null:<Appbar  setAuthenticate={setAuthenticate} setLogin={setLogin}/>}
     <div className="app">
-    
+    {authenticate?
       <div className="app_video">
-      {videos.map(({url,channel,song,description,likes,shares,messages})=>(
-        <Video url={url} channel={channel} description={description} likes={likes} shares={shares} messages={messages} song={song}/>
+      {videos.map(({url,channel,song,description,likes,shares,messages},index)=>(
+        <Video key={index} url={url} channel={channel} description={description} likes={likes} shares={shares} messages={messages} song={song}/>
       )
       
       )}
       
-    </div>
+    </div>:<Blank/>}
     </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Videofooter from './VideoFooter'
 import VideoSidebar from "./VideoSidebar"
 
 
-const Video=({ url, channel, description, song, likes, messages, shares })=>{
+const Video=({ url, channel, description, song, likes, messages, shares ,index})=>{
     const [playing,setPlaying]=useState(false)
     const videoRef=useRef(null)
     const onVideoPress=()=>{
@@ -17,7 +17,7 @@ const Video=({ url, channel, description, song, likes, messages, shares })=>{
     }
 
     return (
-        <div className="video">
+        <div key ={index} className="video">
             <video 
             loop
             ref={videoRef}

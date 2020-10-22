@@ -3,14 +3,14 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Button from "@material-ui/core/Button"
 import Modal from "@material-ui/core/Modal"
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField"
 import Link from "@material-ui/core/Link"
 import db from "./firebase"
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
+// function rand() {
+//     return Math.round(Math.random() * 20) - 10;
+//   }
   
 //   function getModalStyle() {
 //     const top = 50 + rand();
@@ -23,20 +23,20 @@ function rand() {
 //     };
 //   }
   
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }));
+  // const useStyles = makeStyles((theme) => ({
+  //   paper: {
+  //     position: 'absolute',
+  //     width: 400,
+  //     backgroundColor: theme.palette.background.paper,
+  //     border: '2px solid #000',
+  //     boxShadow: theme.shadows[5],
+  //     padding: theme.spacing(2, 4, 3),
+  //   },
+  // }));
   
 
 const Appbar=(props) =>{
-    const classes = useStyles();
+    // const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
 //   const [modalStyle] = React.useState(getModalStyle);
   const [open1, setOpen1] = React.useState(false);
@@ -56,7 +56,10 @@ const Appbar=(props) =>{
 users.forEach((user)=>{
     if(user.userid===id &&user.password===pwd)
     {
-        alert("Welcome Vishnu");
+        
+        props.setAuthenticate(true)
+        props.setLogin(true)
+        localStorage.setItem("channel",id)
         setOpen1(false);
     }
     else{
@@ -72,7 +75,7 @@ users.forEach((user)=>{
       }
       
      db.collection("users").doc().set(data)
-    .then(()=>{alert("success")})
+    .then(()=>{alert("success");setOpen2(false);})
       .catch((error)=>{
           alert(error)
       })
