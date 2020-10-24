@@ -11,14 +11,14 @@ const Adddata=(props)=> {
     const [desc,setDesc]=useState("")
     const [file,setFile]=useState([])
     const[url,setUrl]=useState("URL")
-    const[disable,setDisable]=useState(true)
+    
     const [progress, setProgress] = useState(0);
  
     const showurl=()=>{
         let bucketname='videos'
         let resfile=file[0]
         let storageRef=firebase.storage().ref(`${bucketname}/${resfile.name}`)
-        let spaceRef=storageRef
+        
         storageRef.getDownloadURL().then((URL)=>{
             setUrl(URL);
             console.log(URL)
@@ -42,6 +42,7 @@ const Adddata=(props)=> {
     }
     const Upload=(files)=>{
         if(song!==""&&desc!=="" &&file.name!==""){
+        props.setVideo(files[0].name)    
         setFile(files)
         let bucketname='videos'
         // let resfile=files[0]

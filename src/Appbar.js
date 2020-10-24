@@ -3,42 +3,46 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Button from "@material-ui/core/Button"
 import Modal from "@material-ui/core/Modal"
-// import { makeStyles } from '@material-ui/core/styles';
+ import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField"
 import Link from "@material-ui/core/Link"
 import db from "./firebase"
 
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-//   }
+ function rand() {
+    return Math.round(Math.random() * 20) - 10;
+   }
   
-//   function getModalStyle() {
-//     const top = 50 + rand();
-//     const left = 50 + rand();
+  function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
   
-//     return {
-//       top: `${top}%`,
-//       left: `${left}%`,
-//       transform: `translate(-${top}%, -${left}%)`,
-//     };
-//   }
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
   
-  // const useStyles = makeStyles((theme) => ({
-  //   paper: {
-  //     position: 'absolute',
-  //     width: 400,
-  //     backgroundColor: theme.palette.background.paper,
-  //     border: '2px solid #000',
-  //     boxShadow: theme.shadows[5],
-  //     padding: theme.spacing(2, 4, 3),
-  //   },
-  // }));
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 300,
+      left:600,
+      backgroundImage: 'url("https://image.winudf.com/v2/image/Y29tLnNpbXBsZWRyb2lkLndhbGxwYXBlcmdyYWRpZW50YmFja2dyb3VuZF9zY3JlZW5fMTVfMTUyNjk2OTAyMF8wNzc/screen-15.jpg?fakeurl=1&type=.jpg")',
+      border: '2px solid black',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      backgroundSize: 'cover',
+    
+   
+    },
+  }));
   
 
 const Appbar=(props) =>{
-    // const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-//   const [modalStyle] = React.useState(getModalStyle);
+    const classes = useStyles();
+  //getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [users,setUsers]=useState([])
@@ -59,6 +63,8 @@ users.forEach((user)=>{
         
         props.setAuthenticate(true)
         props.setLogin(true)
+        props.setPassword(pwd)
+        props.setUserid(id)
         localStorage.setItem("channel",id)
         setOpen1(false);
     }
@@ -100,32 +106,32 @@ users.forEach((user)=>{
   };
 
   const body1 = (
-    <div className="LoginForm">
+    <div  style={modalStyle} className={classes.paper} >
           
-            <div className="LoginItem"> 
+            <div > 
            <TextField  required id="UserID"label="UserID" onChange={(e)=>setId(e.target.value)} value={id}/>
            </div>
-            <div className="LoginItem">
+            <div >
            <TextField required id="Password"label="Password" type="password" onChange={(e)=>setPwd(e.target.value)} value={pwd}/>
            </div>
-        <div className="Forgot"><Link color="inherit" style={{cursor:"pointer"}}>Forgot Password?</Link></div>
-        <div className="LoginButton">
+        <div ><Link color="inherit" style={{cursor:"pointer"}}>Forgot Password?</Link></div>
+        <div  style={{marginTop:'10px'}}>
         <Button variant="contained" color="primary" onClick={Validate}>Login</Button>
         </div>
         
         </div>
   );
   const body2 = (
-    <div className="LoginForm">
+    <div  style={modalStyle} className={classes.paper}>
           
-            <div className="LoginItem"> 
+            <div > 
            <TextField  required id="UserID"label="UserID" onChange={(e)=>setId(e.target.value)} value={id}/>
            </div>
-            <div className="LoginItem">
+            <div >
            <TextField required id="Password"label="Password" type="password" onChange={(e)=>setPwd(e.target.value)} value={pwd}/>
            </div>
         
-        <div className="LoginButton">
+        <div  style={{marginTop:'10px'}}>
         <Button variant="contained" color="primary" onClick={save}>Signup</Button>
         </div>
         

@@ -4,7 +4,7 @@ import Videofooter from './VideoFooter'
 import VideoSidebar from "./VideoSidebar"
 
 
-const Video=({ url, channel, description, song, likes, messages, shares ,index})=>{
+const Video=({ url, channel, description, song, likes, messages, shares ,index,userid,password})=>{
     const [playing,setPlaying]=useState(false)
     const videoRef=useRef(null)
     const onVideoPress=()=>{
@@ -15,16 +15,20 @@ const Video=({ url, channel, description, song, likes, messages, shares ,index})
         videoRef.current.play();
         setPlaying(true);}
     }
+    const onVideoScroll=()=>{
+        console.log("scrolled")
+    }
 
     return (
-        <div key ={index} className="video">
+        <div key ={index} className="video" onScroll={onVideoScroll}>
             <video 
-            loop
+            
             ref={videoRef}
             onClick={onVideoPress}
+            
             className="video_player" 
             src={url}></video>
-            <VideoSidebar likes={likes} messages={messages} shares={shares}/>
+            <VideoSidebar likes={likes} messages={messages} shares={shares} url={url} userid={userid} password={password}/>
             <Videofooter channel={channel} description={description} song={song}/>
         </div>
         
