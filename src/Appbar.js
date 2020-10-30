@@ -57,7 +57,8 @@ const Appbar=(props) =>{
 
 
   const Validate=()=>{
-users.forEach((user)=>{
+    let check=true
+    users.forEach((user)=>{
     if(user.userid===id &&user.password===pwd)
     {
         
@@ -67,11 +68,13 @@ users.forEach((user)=>{
         props.setUserid(id)
         localStorage.setItem("channel",id)
         setOpen1(false);
+        check=false;
     }
-    else{
-        alert("Wrong username or password")
-    }
+    
 })
+if(check)
+alert("Wrong username or password")
+
   }
   const save=()=>{
     if(id!==""&&pwd!==""){  
