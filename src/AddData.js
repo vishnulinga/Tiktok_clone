@@ -109,7 +109,7 @@ const Adddata=(props)=> {
 {progress!==100?
 <CircularProgress fontSize="medium"variant="static" value={progress} />:
     //    <Button variant="contained" color="primary" id="upload" disabled={disable} onClick={Upload}>upload</Button>
-       <Button variant="contained" color="primary" onClick={showurl}>url</Button>}
+       <Button variant="contained" color="primary" onClick={showurl}>Upload</Button>}
     
     </div>
     )

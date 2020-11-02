@@ -109,7 +109,7 @@ const VideoSidebar=({likes,shares,messages,url,userid,password})=> {
         <div className="VideoSidebar">
           <div className="VideoSidebar_button">
             
-               <AddIcon fontSize="large" onClick={handleOpen}/>
+               <AddIcon cursor="pointer" fontSize="large" onClick={handleOpen}/>
                <Modal
         open={open}
         onClose={handleClose}
@@ -122,7 +122,7 @@ const VideoSidebar=({likes,shares,messages,url,userid,password})=> {
             
           </div>
           <div className="VideoSidebar_button">
-            <DeleteOutlineIcon fontSize="large" onClick={handleOpen2}/>
+            <DeleteOutlineIcon cursor="pointer" fontSize="large" onClick={handleOpen2}/>
             <Modal
         open={open2}
         onClose={handleClose2}
@@ -135,16 +135,16 @@ const VideoSidebar=({likes,shares,messages,url,userid,password})=> {
           </div>
           <div className="VideoSidebar_button">
             {
-                liked?<FavoriteIcon fontSize="large" onClick={(e)=>setLiked(false)}/>:<FavoriteBorderIcon fontSize="large" onClick={(e)=>setLiked(true)}/>
+                liked?<FavoriteIcon cursor="pointer" fontSize="large" onClick={(e)=>setLiked(false)}/>:<FavoriteBorderIcon cursor="pointer" fontSize="large" onClick={(e)=>setLiked(true)}/>
             }
             <p>{liked?likes+1:likes}</p>
           </div>
           <div className="VideoSidebar_button">
-            <MessageIcon fontSize="large" />
+            <MessageIcon cursor="pointer" fontSize="large" />
             <p>{messages}</p>
           </div>
           <div className="VideoSidebar_button">
-            <ShareIcon fontSize="large" />
+            <ShareIcon cursor="pointer" fontSize="large" />
             <p>{shares}</p>
           </div>
         </div>
